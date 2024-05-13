@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kg_sa/core/statics/app_colors.dart';
 import 'package:kg_sa/core/widgets/custom_image_view.dart';
+import 'package:kg_sa/features/profile/data/models/courses_model.dart';
 
 class CourseWidget extends StatelessWidget {
-  // final String imgPath;
-  // final String courseName;
-  const CourseWidget({super.key,});
+  final Course  course;
+  const CourseWidget({super.key, required this.course,});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CourseWidget extends StatelessWidget {
             color: AppColors.categoryTextColor,
           ),
           Center(
-            child: Text("Maths",
+            child: Text(course.name!,
             style: TextStyle(
               fontSize: 17.sp,
               fontFamily: "Baloo",

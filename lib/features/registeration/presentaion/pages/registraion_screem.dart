@@ -175,6 +175,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        print(img!.path);
                         if (_firstNameController.text.isEmpty ||
                             _lastNameController.text.isEmpty ||
                             _emailController.text.isEmpty ||

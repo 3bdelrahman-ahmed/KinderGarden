@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kg_sa/core/statics/app_colors.dart';
 import 'package:kg_sa/core/widgets/custom_image_view.dart';
+import 'package:kg_sa/features/home/data/models/teacher_model.dart';
 
 class TeacherWidget extends StatelessWidget {
-  const TeacherWidget({super.key});
+  final Teacher teacherInfo;
+  const TeacherWidget({super.key, required this.teacherInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,8 @@ class TeacherWidget extends StatelessWidget {
                             right: Radius.circular(20.w)),
                         child: Image.network(
                             fit: BoxFit.cover,
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIftJBXnM23Bb5T9Iyq9Gjv_xmluu0udv9ofjRvk4SMg&s"),
+                            teacherInfo.profilePicture!
+                            ),
                       ),
                     ),
                     SizedBox(
@@ -52,7 +55,7 @@ class TeacherWidget extends StatelessWidget {
                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "3m Ahmed",
+                          teacherInfo.name!,
                           style: TextStyle(
                               color: AppColors.categoryTextColor,
                               fontSize: 20.sp,

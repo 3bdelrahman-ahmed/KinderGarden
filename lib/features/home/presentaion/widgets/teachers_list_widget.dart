@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kg_sa/features/home/data/models/teacher_model.dart';
 import 'package:kg_sa/features/home/presentaion/widgets/teacher_widget.dart';
 
 class TeachersListWiget extends StatelessWidget {
-  const TeachersListWiget({super.key});
+  final TeachersModel teachersModel;
+  const TeachersListWiget({super.key, required this.teachersModel});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         width: 345.w,
-        padding: EdgeInsets.all(10.w),
+        padding: EdgeInsets.all(15.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(top: Radius.circular(45.w)),
             boxShadow: [
@@ -29,10 +31,12 @@ class TeachersListWiget extends StatelessWidget {
         child: ListView.separated(
           padding: EdgeInsets.zero,
           itemBuilder: (context,index){
-            return TeacherWidget();
+            return TeacherWidget(
+                teacherInfo: teachersModel.data![index],
+            );
         }, separatorBuilder: ((context, index) {
           return SizedBox(height: 10.h,);
-        }), itemCount: 3),
+        }), itemCount: teachersModel.data!.length),
       ),
     );
   }

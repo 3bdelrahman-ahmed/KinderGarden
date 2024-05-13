@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kg_sa/core/statics/app_colors.dart';
 import 'package:kg_sa/core/statics/app_strings.dart';
@@ -6,6 +7,7 @@ import 'package:kg_sa/core/utils/navigation_utils.dart';
 import 'package:kg_sa/core/widgets/bottom_nav_bar.dart';
 import 'package:kg_sa/core/widgets/flutter_toast.dart';
 import 'package:kg_sa/core/widgets/start_design_widget.dart';
+import 'package:kg_sa/features/Login/domain/cubit/login_cubit.dart';
 
 import 'package:kg_sa/features/home/presentaion/pages/home_screen.dart';
 import 'package:kg_sa/features/registeration/presentaion/pages/registraion_screem.dart';
@@ -27,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var loginCubit = context.read<LoginCubit>();
     return Scaffold(
         backgroundColor: AppColors.primaryColor,
         resizeToAvoidBottomInset: true,
@@ -61,7 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: "Enter Your Password",
                   textEditingController: passwordController,
                   obsucreText: true,
-                
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -99,76 +101,97 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-          
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Center(
-                  child: GestureDetector(
-                    onTap: (){
-                        if(emailAddressController.text.isEmpty || passwordController.text.isEmpty){
-                          showToast(
-                            context,
-                            "Please Make Sure to Fill All Fields",
-                            AppColors.buttonsColor,
-                          );
-                        }
-                        else{
-                          FlutterUtils.pushReplacement(context, BottomNavigationBarWidget());
-                        }
+                  child: BlocConsumer<LoginCubit, LoginState>(
+                    listener: (context, state) {
+                      print(state);
+                     if (state is LoginLoadedState){
+                      showToast(context, "Success Login", AppColors.amberColor);
+                          return   FlutterUtils.pushReplacement(
+                                context, BottomNavigationBarWidget());
+                      } 
                     },
-                    child: Container(
-                      height: 50.h,
-                      width: 115.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.horizontal(left: Radius.circular(25.w),right: Radius.circular(25.w)),
-                        color: AppColors.buttonsColor
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(AppStrings.signIn,
-                            style: TextStyle(
-                              fontFamily: "Baloo",
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white
-                            ),
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () {
+                          if (emailAddressController.text.isEmpty ||
+                              passwordController.text.isEmpty) {
+                            showToast(
+                              context,
+                              "Please Make Sure to Fill All Fields",
+                              AppColors.buttonsColor,
+                            );
+                          } 
+                          else {
+                            loginCubit.login(LoginParameters(email: emailAddressController.text, password: passwordController.text), context, Colors.red);
+                          }
+                        },
+                        child: Container(
+                          height: 50.h,
+                          width: 115.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(25.w),
+                                  right: Radius.circular(25.w)),
+                              color: AppColors.buttonsColor),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                AppStrings.signIn,
+                                style: TextStyle(
+                                    fontFamily: "Baloo",
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
+                              ),
+                              Icon(
+                                Icons.login,
+                                color: Colors.white,
+                                size: 20.w,
+                              ),
+                            ],
                           ),
-                          Icon(Icons.login,
-                          color: Colors.white,
-                          size: 20.w,
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-                SizedBox(height: 5.h,),
+                SizedBox(
+                  height: 5.h,
+                ),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(AppStrings.donotHaveAccount,
-                      style: TextStyle(
-                        fontFamily: "BalooBahi2",
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.amberColor,
+                      Text(
+                        AppStrings.donotHaveAccount,
+                        style: TextStyle(
+                          fontFamily: "BalooBahi2",
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.amberColor,
+                        ),
                       ),
-                      ),
-
-                      TextButton(onPressed: (){
-                          FlutterUtils.push(context, RegisterationScreen());
-                      }, child: Text(AppStrings.register,
-                       style: TextStyle(
-                        fontFamily: "BalooBahi2",
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.amberColor,
-                         decoration: TextDecoration.underline,
-                        decorationColor: AppColors.amberColor,
-                      ),
-                      ))
+                      TextButton(
+                          onPressed: () {
+                            FlutterUtils.push(context, RegisterationScreen());
+                          },
+                          child: Text(
+                            AppStrings.register,
+                            style: TextStyle(
+                              fontFamily: "BalooBahi2",
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.amberColor,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.amberColor,
+                            ),
+                          ))
                     ],
                   ),
                 )

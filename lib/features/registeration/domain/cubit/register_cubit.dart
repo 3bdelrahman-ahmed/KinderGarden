@@ -39,12 +39,12 @@ print('File Exists: ${parameters.img.existsSync()}');
 
     // Add form fields
     request.fields['name'] = parameters.name;
-    request.fields['email'] = parameters.email;
+    request.fields['parentPhone'] = parameters.email;
     request.fields['password'] = parameters.password;
-    request.fields['birth_date'] = parameters.birthDate.toIso8601String();
+    request.fields['birthDate'] = parameters.birthDate.toIso8601String();
 
     // Add image file
-    var image = await http.MultipartFile.fromPath('img', parameters.img.path);
+    var image = await http.MultipartFile.fromPath('image', parameters.img.path);
     request.files.add(image);
 
     // Send the request
@@ -54,6 +54,8 @@ print('File Exists: ${parameters.img.existsSync()}');
     var response = await http.Response.fromStream(streamedResponse);
     print(response.body);
     // Check if request was successful
+
+    
     if (response.statusCode == 200) {
       emit(RegisterSuccess());
       return Right(response.body);
@@ -84,15 +86,4 @@ class RegisterParameters {
 
   RegisterParameters(this.name, this.email, this.password, this.img,
       this.birthDate);
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'parentPhone': email,
-      'password': password,
-      // Convert the File object to a string path for the API request
-      'image': img.path,
-      'birthDate': birthDate,
-    };
-  }
 }

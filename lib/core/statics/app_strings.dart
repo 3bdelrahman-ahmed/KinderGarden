@@ -35,4 +35,5 @@ static const String coloreFulPassword= "Coloreful Tots Password";
 // profile screen
 static const String enrolledCourses = "Enrolled Classes";
 static const String grdes ="Grades";
+static  const String noEnrolledCourses ="No Enrolled Courses";
 }

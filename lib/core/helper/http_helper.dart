@@ -24,7 +24,7 @@ import '../statics/app_cashing.dart';
 // final httpHelper = sl<HTTPHelper>();
 
 class HTTPHelper {
-  Future get({
+  static Future get({
     required String path,
     String? token,
     Map<String, dynamic>? queryParameters,
@@ -48,7 +48,7 @@ class HTTPHelper {
     }
   }
 
-  Future post({
+ static Future post({
     required String path,
     Map<String, dynamic>? queryParameters,
     body,
@@ -64,7 +64,11 @@ class HTTPHelper {
             print(response);
 
       return _returnResponse(response);
-    }  catch (e) {
+    }on BadRequestException catch (_) {
+        throw BadRequestFailure(); 
+    }   
+    
+    catch (e) {
     throw ServerException();  
     }
   } 
