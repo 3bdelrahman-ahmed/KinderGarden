@@ -18,7 +18,9 @@ class AppStrings {
   static const String teachersList ="Teachers List";
   static const String videoSnip= "Video / Snippets";
     static const String currentActivity = "Current Activity";
-
+    static const String noActivity = "No Activity";
+    static const String teachersListsuccess = "Teachers List Fetched Successfully";
+  static const String teachersListEmpty = "No Teachers";
 
  // inbox screen 
 
@@ -28,12 +30,21 @@ class AppStrings {
 // registraion
 
 static const String firstName= "First Name";
-static const String lastName= "Lats Name";
-static const String coloreFulEmail= "Coloreful Tots Email";
+static const String lastName= "Last Name";
+static const String coloreFulEmail= "Your Phone Number";
 static const String coloreFulPassword= "Coloreful Tots Password";
 
 // profile screen
 static const String enrolledCourses = "Enrolled Classes";
 static const String grdes ="Grades";
 static  const String noEnrolledCourses ="No Enrolled Courses";
+static const String noGrades ="No Grades Assigned to your Enrolled Courses";
+
+
+// courses screen 
+static const String courses ="courses";
+static const String enroll = "Enroll";
+
+static const String noCourses = "No Courses";
+
 }

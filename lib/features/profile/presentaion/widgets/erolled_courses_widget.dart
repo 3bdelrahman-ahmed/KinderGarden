@@ -7,6 +7,7 @@ import 'package:kg_sa/core/statics/app_strings.dart';
 import 'package:kg_sa/features/profile/domain/cubit/profile_cubit.dart';
 import 'package:kg_sa/features/profile/presentaion/widgets/course_widget.dart';
 
+import '../../../../core/utils/counter.dart';
 import '../../../../core/widgets/custom_category_container.dart';
 
 class EnrolledCouresWidget extends StatefulWidget {
@@ -28,7 +29,7 @@ class _EnrolledCouresWidgetState extends State<EnrolledCouresWidget> {
     super.initState();
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
-    context.read<ProfileCubit>().getUserEnrolledCourses(context, AppColors.error, AppCashingService.token);
+    context.read<ProfileCubit>().getAllCourses(context, AppColors.error, AppCashingService.token);
   }
 
   @override
@@ -91,10 +92,14 @@ class _EnrolledCouresWidgetState extends State<EnrolledCouresWidget> {
             // TODO: implement listener
           },
           builder: (context, state) {
+
             print(state);
             if(profileCubit.enrolledCourses != null){
             if(profileCubit.enrolledCourses!.data!.isNotEmpty){
-                 return Row(
+              
+              if(countFalseSelections(profileCubit.enrolledCourses!) >0){
+                print(countFalseSelections(profileCubit.enrolledCourses!));
+                   return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
@@ -105,14 +110,14 @@ class _EnrolledCouresWidgetState extends State<EnrolledCouresWidget> {
                     controller: _controller,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return CustomCategoryCotainerWidget(
+                      return profileCubit.enrolledCourses!.data![index].isSelected!? CustomCategoryCotainerWidget(
                         height: 60.h,
                         width: _itemWidth,
                         widget: CourseWidget(
                           course: profileCubit.enrolledCourses!.data![index],
                         ),
                         radius: 30.w,
-                      );
+                      ):SizedBox();
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(width: _separatorWidth);
@@ -139,6 +144,20 @@ class _EnrolledCouresWidgetState extends State<EnrolledCouresWidget> {
                 ),
               ],
             );
+              }else{
+                return Center(
+                  child: Text(
+                    AppStrings.noEnrolledCourses,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.amberColor,
+                      fontFamily: "Baloo",
+                    ),
+                  ),
+                );
+              }
+                
               }else{
                 return Center(
                   child: Text(

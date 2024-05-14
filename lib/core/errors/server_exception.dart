@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:kg_sa/core/widgets/flutter_toast.dart';
 abstract class Failure {}
 
 // Failures

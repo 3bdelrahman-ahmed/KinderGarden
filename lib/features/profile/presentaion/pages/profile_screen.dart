@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Positioned(
                 top: 0,
                 child: Container(
-                  width: ScreenUtil.defaultSize.width,
+                  width: MediaQuery.of(context).size.width,
                   height: 200.h,
                   child: Image.asset(
                     'assets/images/aa.png', // Replace 'background_image.jpg' with your image asset
@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   bottom: 0,
                   child: Container(
                     padding: EdgeInsets.only(top: 65.h),
-                    width: ScreenUtil.defaultSize.width,
+                    width: MediaQuery.of(context).size.width,
                     height: 470.h,
                     decoration: BoxDecoration(
                         color: AppColors.primaryColor,

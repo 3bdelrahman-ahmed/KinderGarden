@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontFamily: "Baloo"),
                 ),
                 TextFieldWidget(
-                  hintText: "Enter Your Email",
+                  hintText: "Enter Your PhoneNumber",
                   textEditingController: emailAddressController,
                   obsucreText: false,
                 ),

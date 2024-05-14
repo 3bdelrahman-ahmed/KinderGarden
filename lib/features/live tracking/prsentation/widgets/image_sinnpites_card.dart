@@ -14,6 +14,13 @@ class ImageSnipptesCard extends StatelessWidget {
           borderRadius: BorderRadius.horizontal(left: Radius.circular(15.w),right: Radius.circular(15.w)),
           color: AppColors.amberColor,
       ),
+      child: ClipRRect(
+                 borderRadius: BorderRadius.horizontal(left: Radius.circular(15.w),right: Radius.circular(15.w)),
+ 
+        child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDrbzL2WvkglIh_wYx9VAX83fdTBXs-o2kDCdvi5FiCA&s",
+        fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

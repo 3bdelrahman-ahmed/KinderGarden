@@ -25,9 +25,10 @@ void showToast(BuildContext context,String message,Color color ) {
          const  SizedBox(width: 10),
           Text(message
           ,
-          style: const TextStyle(
+          style:  TextStyle(
             fontFamily: "Cairo",
-            fontWeight: FontWeight.bold
+            fontWeight: FontWeight.bold,
+            fontSize: 8.sp
           ),
           ),
         ],

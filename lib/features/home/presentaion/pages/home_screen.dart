@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var teacherCubit = context.read<TeacherCubit>();
     return Scaffold(
+     // bottomNavigationBar: BottomNavigationBarWidget(),
       backgroundColor: AppColors.primaryColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocConsumer<TeacherCubit, TeacherState>(
             listener: (context, state) {
               if(state is TeacherListLoadedState){
-               showToast(context, teacherCubit.teachersList!.message!, AppColors.amberColor);
+               showToast(context, AppStrings.teachersListsuccess, AppColors.amberColor);
               }
             },
             builder: (context, state) {
@@ -83,7 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ));
                   }
                   else{
-                    return Expanded(child: Center(child: Text("No teachers found")));
+                    return Expanded(child: Center(child: Text(AppStrings.teachersListEmpty,
+                    style: TextStyle(
+                      fontFamily: "Baloo",
+                      fontSize: 20.sp,
+                      color: AppColors.amberColor,
+                      fontWeight: FontWeight.w400
+                    ),
+                    )));
                   }
                 }else{
                   return Expanded(child: Center(child: CircularProgressIndicator()));

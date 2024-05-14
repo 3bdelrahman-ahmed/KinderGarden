@@ -6,17 +6,17 @@ TextSpan getRainbowText() {
       text: '',
       style:  TextStyle(
         fontFamily: "Baloo", // Set your desired font family
-        fontSize: 15.sp,
+        fontSize: 12.sp,
         fontWeight: FontWeight.normal,
       ),
       children: [
-        _coloredLetter('R', Colors.red),
-        _coloredLetter('a', Colors.orange),
-        _coloredLetter('i', Colors.yellow),
-        _coloredLetter('n', Colors.green),
-        _coloredLetter('b', Colors.blue),
-        _coloredLetter('o', Colors.indigo),
-        _coloredLetter('w', Colors.purple),
+        _coloredLetter('R', const Color.fromARGB(255, 143, 71, 66)),
+        _coloredLetter('a', const Color.fromARGB(255, 170, 136, 84)),
+        _coloredLetter('i', const Color.fromARGB(255, 176, 168, 100)),
+        _coloredLetter('n', const Color.fromARGB(255, 95, 172, 97)),
+        _coloredLetter('b', const Color.fromARGB(255, 85, 127, 162)),
+        _coloredLetter('o', const Color.fromARGB(255, 90, 104, 183)),
+        _coloredLetter('w', const Color.fromARGB(255, 145, 87, 156)),
       ],
     );
   

@@ -14,3 +14,8 @@ final class ProfileInitial extends ProfileState {}
  final class EnrolledCoursesLoading extends ProfileState {}
  final class EnrolledCoursesLoaded extends ProfileState {}
  final class EnrolledCoursesError extends ProfileState {}
+
+
+ final class GradesLoadingState extends ProfileState {}
+ final class GradesLoadedState extends ProfileState {}
+ final class GradesErrorState extends ProfileState {}

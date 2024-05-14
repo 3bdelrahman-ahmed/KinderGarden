@@ -17,8 +17,8 @@ class StartDesignWidget extends StatelessWidget {
         children: [
           CustomImageView(
             imagePath: "assets/images/splashIcon.png",
-            width: 320.w,
-            height: 225.h,
+            width: 300.w,
+            height: 200.h,
           ),
         
           Stack(
@@ -28,7 +28,7 @@ class StartDesignWidget extends StatelessWidget {
                 AppStrings.splashText,
                 style: TextStyle(
                   fontFamily: "Baloo",
-                  fontSize: 36.sp,
+                  fontSize: 30.sp,
                   foreground: Paint()
                     ..style = PaintingStyle.stroke
                     ..strokeWidth = 8.5
@@ -43,7 +43,7 @@ class StartDesignWidget extends StatelessWidget {
                 AppStrings.splashText,
                 style: TextStyle(
                   fontFamily: "Baloo",
-                  fontSize: 36.sp,
+                  fontSize: 30.sp,
                   color: Colors.white, // Set the color of the text inside
                   fontWeight: FontWeight.w400,
                 ),
@@ -61,7 +61,7 @@ class StartDesignWidget extends StatelessWidget {
                       
                       text: 'Where Every Day is a ',
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 12.sp,
                         color: AppColors.splashTextColor,
                         fontFamily: "Baloo",
                         fontWeight: FontWeight.w400,
@@ -71,7 +71,7 @@ class StartDesignWidget extends StatelessWidget {
                      TextSpan(
                       text: ' Adventure',
                       style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: 12.sp,
                         color: AppColors.splashTextColor,
                         fontFamily: "Baloo",
                         fontWeight: FontWeight.w400,
@@ -84,7 +84,7 @@ class StartDesignWidget extends StatelessWidget {
           ),
           Text("for your Child!",
           style: TextStyle(
-             fontSize: 15.sp,
+             fontSize: 12.sp,
                         color: AppColors.splashTextColor,
                         fontFamily: "Baloo",
                         fontWeight: FontWeight.w400,

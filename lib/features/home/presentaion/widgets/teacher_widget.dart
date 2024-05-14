@@ -64,7 +64,7 @@ class TeacherWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 15.h,),
                         Text(
-                          "Course",
+                        teacherInfo.courses!.isNotEmpty?   teacherInfo.courses!.first.name! : "",
                           style: TextStyle(
                               color: AppColors.teacherCourseColor,
                               fontSize: 20.sp,
@@ -106,7 +106,7 @@ class TeacherWidget extends StatelessWidget {
                       "Request Communication",
                       style: TextStyle(
                           fontFamily: "Baloo",
-                          fontSize: 12.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w400,
                           color: AppColors.categoryTextColor),
                     ),

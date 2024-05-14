@@ -22,16 +22,25 @@ class RegisterationScreen extends StatefulWidget {
   @override
   State<RegisterationScreen> createState() => _RegisterationScreenState();
 }
+ late TextEditingController _firstNameController ;
+  late  TextEditingController _lastNameController;
+  late  TextEditingController _emailController ;
+  late  TextEditingController _passwordController ;
     XFile? img ;
 
 class _RegisterationScreenState extends State<RegisterationScreen> {
+    void initState() {
+    super.initState();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     var registerCubit = context.read<RegisterCubit>();
-    TextEditingController _firstNameController = TextEditingController();
-    TextEditingController _lastNameController = TextEditingController();
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
+   
 
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
@@ -179,13 +188,20 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         if (_firstNameController.text.isEmpty ||
                             _lastNameController.text.isEmpty ||
                             _emailController.text.isEmpty ||
-                            _passwordController.text.isEmpty) {
+                            _passwordController.text.isEmpty ) {
                           showToast(
                             context,
                             "Please Make Sure to Fill All Fields",
                             AppColors.buttonsColor,
                           );
-                        } else {
+                        }else if(img == null){
+                             showToast(
+                            context,
+                            "Please Pick Your Profile image",
+                            AppColors.buttonsColor,
+                          );
+                        }
+                         else {
                               registerCubit.register(
                                 RegisterParameters(_firstNameController.text+_lastNameController.text, _emailController.text, _passwordController.text, 
                                 File(img!.path),
@@ -193,6 +209,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                                  context,
                                  Colors.red,
                               );
+                              img = null; 
                         }
                       },
                       child: Container(
@@ -238,6 +255,15 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
     setState(() {
       img = image;
     });
+  }
+
+      @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
 
